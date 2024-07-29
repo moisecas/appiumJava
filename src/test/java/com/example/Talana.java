@@ -7,7 +7,11 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -30,12 +34,13 @@ public class Talana {
 
     @Test
     public void testTalanaApp() {
-        // Tu código de prueba aquí
-        MobileElement el1 = driver.findElementById("com.talana.nextqa:id/element_id"); // Reemplaza con el ID correcto
-        el1.click();
-        MobileElement el2 = driver.findElementByXPath("//android.widget.TextView[@text='Example']"); // Reemplaza con el XPath correcto
-        el2.sendKeys("Hello, Appium!");
-    }
+    // Esperar que el elemento esté presente y sea clickable
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement el1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup")));
+    
+    el1.click(); // Hacer clic en el elemento
+}
+
 
     @After
     public void tearDown() {
