@@ -34,11 +34,17 @@ public class Talana {
 
     @Test
     public void testTalanaApp() {
-    // Esperar que el elemento esté presente y sea clickable
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-    WebElement el1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup")));
+
+     //Acá es donde empiezo a crear los metodos para las pruebas  
+
+   
+    WebDriverWait wait = new WebDriverWait(driver, 30);  // Esperar que el elemento esté presente y sea clickable
+    WebElement el1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup"))); // Encontrar el elemento por xpath
     
     el1.click(); // Hacer clic en el elemento
+
+    WebElement el2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Spinner[@resource-id='com.talana.nextqa:id/enviroment_ambient']")));
+    el2.click(); // Hacer clic en el segundo elemento, listbox
 }
 
 
