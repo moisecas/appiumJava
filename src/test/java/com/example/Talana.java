@@ -45,6 +45,10 @@ public class Talana {
 
     WebElement el2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Spinner[@resource-id='com.talana.nextqa:id/enviroment_ambient']")));
     el2.click(); // Hacer clic en el segundo elemento, listbox
+
+    WebElement migrationOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Spinner[@resource-id=\"com.talana.nextqa:id/enviroment_ambient\"]")));
+    migrationOption.click();   
+
 }
 
 
