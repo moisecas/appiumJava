@@ -39,43 +39,30 @@ public class Talana {
     public void testTalanaApp() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
-        // Esperar que el Spinner esté presente y sea clickable
-        WebElement el2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Spinner[@resource-id='com.talana.nextqa:id/enviroment_ambient']")));
-        el2.click(); // Hacer clic en el Spinner para mostrar la lista
-
-        // Esperar unos segundos para asegurarnos de que la lista se haya desplegado
+        // Esperar unos segundos adicionales para asegurarnos de que la aplicación esté completamente cargada
         try {
-            Thread.sleep(2000); // Espera de 2 segundos
+            Thread.sleep(5000); // Espera de 5 segundos
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Imprimir todos los elementos TextView visibles
-        List<MobileElement> options = driver.findElements(By.className("android.widget.TextView"));
-        System.out.println("Elementos TextView disponibles:");
-        for (MobileElement option : options) {
-            System.out.println(option.getText());
+        // Asegurarse de que el Spinner esté presente y visible
+        WebElement el2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Spinner[@resource-id='com.talana.nextqa:id/enviroment_ambient']")));
+
+        // Verificar si el Spinner está habilitado y se puede hacer clic
+        if (el2.isEnabled()) {
+            el2.click(); // Hacer clic en el Spinner para mostrar la lista
+        } else {
+            System.out.println("El Spinner no está habilitado para hacer clic.");
         }
+
+        // Esperar que el botón "GUARDAR AMBIENTE" esté presente y sea clickable
+        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Button[@resource-id='com.talana.nextqa:id/saveEnvironment']")));
+        saveButton.click(); // Hacer clic en el botón "GUARDAR AMBIENTE"
 
         // Esperar que la opción "Migración PE" esté presente y sea clickable
-        WebElement migrationOption = null;
-        for (MobileElement option : options) {
-            if (option.getText().contains("migracion pe")) {
-                migrationOption = option;
-                break;
-            }
-        }
-
-        if (migrationOption != null) {
-            System.out.println("Texto del elemento encontrado: " + migrationOption.getText());
-            System.out.println("Estado del elemento: Enabled=" + migrationOption.isEnabled() + ", Displayed=" + migrationOption.isDisplayed());
-
-            // Usar TouchAction para hacer clic en las coordenadas del elemento
-            TouchAction touchAction = new TouchAction(driver);
-            touchAction.tap(PointOption.point(migrationOption.getLocation().getX(), migrationOption.getLocation().getY())).perform();
-        } else {
-            System.out.println("Elemento 'migracion pe' no encontrado.");
-        }
+        WebElement migrationOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='migracion pe']")));
+        migrationOption.click(); // Hacer clic en la opción "Migración PE"
     }
 
     @After
@@ -83,5 +70,5 @@ public class Talana {
         if (driver != null) {
             driver.quit();
         }
-    }
+    } 
 }
