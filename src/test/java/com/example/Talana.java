@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -56,6 +57,17 @@ public class Talana {
             System.out.println("No se pudo seleccionar la opción 'migracion pe' en la pantalla.");
             e.printStackTrace();
         }
+
+        try {
+            WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//android.widget.Button[@resource-id='com.talana.nextqa:id/saveEnvirontment']")));
+            saveButton.click();
+            System.out.println("Se ha hecho clic en el botón de guardar ambiente.");
+        } catch (Exception e) {
+            System.out.println("No se pudo hacer clic en el botón de guardar ambiente.");
+            e.printStackTrace();
+        }
+
     }
 
     @After
