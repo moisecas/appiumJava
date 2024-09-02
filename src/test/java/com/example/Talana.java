@@ -80,8 +80,8 @@ public class Talana {
         }
 
        
-        try {  // Agregar una espera de 5 segundos antes de finalizar la prueba
-            Thread.sleep(10000); // Espera de 5 segundos
+        try {  // Agregar una espera de 10 segundos antes de finalizar la prueba
+            Thread.sleep(10000); // Espera de 10 segundos
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
