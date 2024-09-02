@@ -79,6 +79,13 @@ public class Talana {
             e.printStackTrace();
         }
 
+       
+        try {  // Agregar una espera de 5 segundos antes de finalizar la prueba
+            Thread.sleep(10000); // Espera de 5 segundos
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @After
