@@ -68,6 +68,17 @@ public class Talana {
             e.printStackTrace();
         }
 
+        
+        try { // Hacer clic en el botón con el resource-id "com.talana.nextqa:id/btnLogin"
+            WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//android.widget.Button[@resource-id='com.talana.nextqa:id/btnLogin']")));
+            loginButton.click();
+            System.out.println("Se ha hecho clic en el botón de login.");
+        } catch (Exception e) {
+            System.out.println("No se pudo hacer clic en el botón de login.");
+            e.printStackTrace();
+        }
+
     }
 
     @After
