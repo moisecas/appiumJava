@@ -86,6 +86,22 @@ public class Talana {
             e.printStackTrace();
         }
 
+        // buscar caja de texto usuario
+        try {
+            MobileElement userTextBox = driver.findElementByAndroidUIAutomator(
+                "new UiSelector().textContains(\"usuario\")");
+            userTextBox.click();
+            System.out.println("Se ha hecho clic en la caja de texto de usuario.");
+
+            // escribir "prueba" en la caja de texto como ej y comprobar si estamos donde necesitamos
+            userTextBox.sendKeys("prueba");
+            System.out.println("Se ha escrito 'prueba' en la caja de texto de usuario.");
+        } catch (Exception e) {
+            System.out.println("No se pudo interactuar con la caja de texto de usuario.");
+            e.printStackTrace();
+        }
+
+
     }
 
     @After
