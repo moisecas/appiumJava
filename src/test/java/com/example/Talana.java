@@ -79,13 +79,6 @@ public class Talana {
             e.printStackTrace();
         }
 
-       
-        try {  // Agregar una espera de 10 segundos antes de finalizar la prueba
-            Thread.sleep(10000); // Espera de 10 segundos
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         // buscar caja de texto usuario
         try {
             MobileElement userTextBox = driver.findElementByAndroidUIAutomator(
@@ -93,14 +86,30 @@ public class Talana {
             userTextBox.click();
             System.out.println("Se ha hecho clic en la caja de texto de usuario.");
 
-            // escribir "prueba" en la caja de texto como ej y comprobar si estamos donde necesitamos
-            userTextBox.sendKeys("prueba");
-            System.out.println("Se ha escrito 'prueba' en la caja de texto de usuario.");
+            // escribir user en la caja de texto como ej y comprobar si estamos donde necesitamos
+            userTextBox.sendKeys("98621005");
+            System.out.println("Se ha escrito el user en la caja de texto de usuario.");
         } catch (Exception e) {
             System.out.println("No se pudo interactuar con la caja de texto de usuario.");
             e.printStackTrace();
         }
 
+        //localizar el botón "Continuar" y hacer clic en él
+        try {
+            MobileElement continuarButton = driver.findElementByAndroidUIAutomator(
+                "new UiSelector().text(\"Continuar\")");
+            continuarButton.click();
+            System.out.println("Se ha hecho clic en el botón 'Continuar'.");
+        } catch (Exception e) {
+            System.out.println("No se pudo hacer clic en el botón 'Continuar'.");
+            e.printStackTrace();
+        }
+
+        try {  // Agregar una espera de 10 segundos antes de finalizar la prueba
+            Thread.sleep(10000); // Espera de 10 segundos
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
