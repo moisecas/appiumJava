@@ -79,20 +79,25 @@ public class Talana {
             e.printStackTrace();
         }
 
-        // buscar caja de texto usuario
+        // buscar caja de texto usuario y cerrar el teclado 
         try {
             MobileElement userTextBox = driver.findElementByAndroidUIAutomator(
                 "new UiSelector().textContains(\"usuario\")");
             userTextBox.click();
             System.out.println("Se ha hecho clic en la caja de texto de usuario.");
-
-            // escribir user en la caja de texto como ej y comprobar si estamos donde necesitamos
+        
+            // Escribir el usuario en la caja de texto
             userTextBox.sendKeys("98621005");
             System.out.println("Se ha escrito el user en la caja de texto de usuario.");
+        
+            // Cerrar el teclado usando el botón "Atrás"
+            driver.navigate().back();
+            System.out.println("Se ha cerrado el teclado.");
         } catch (Exception e) {
             System.out.println("No se pudo interactuar con la caja de texto de usuario.");
             e.printStackTrace();
-        }
+        }     
+      
 
         //localizar el botón "Continuar" y hacer clic en él
         try {
@@ -104,6 +109,17 @@ public class Talana {
             System.out.println("No se pudo hacer clic en el botón 'Continuar'.");
             e.printStackTrace();
         }
+
+        try {
+            WebElement btnGeneric = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//android.widget.Button[@resource-id='com.talana.nextqa:id/btnGeneric']")));
+            btnGeneric.click();
+            System.out.println("Se ha hecho clic en el botón 'btnGeneric'.");
+        } catch (Exception e) {
+            System.out.println("No se pudo hacer clic en el botón 'btnGeneric'.");
+            e.printStackTrace();
+        }
+    
 
         try {  // Agregar una espera de 5 segundos antes de finalizar la prueba
             Thread.sleep(5000); // Espera de 10 segundos
